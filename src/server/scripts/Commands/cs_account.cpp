@@ -80,7 +80,7 @@ public:
         {
             { "2fa",        account2faCommandTable                                       },
             { "addon",      HandleAccountAddonCommand,       SEC_MODERATOR, Console::No  },
-            { "create",     HandleAccountCreateCommand,      SEC_CONSOLE,   Console::Yes },
+            { "create",     HandleAccountCreateCommand,      SEC_GAMEMASTER,Console::Yes },
             { "delete",     HandleAccountDeleteCommand,      SEC_CONSOLE,   Console::Yes },
             { "onlinelist", HandleAccountOnlineListCommand,  SEC_CONSOLE,   Console::Yes },
             { "lock",       accountLockCommandTable                                      },
