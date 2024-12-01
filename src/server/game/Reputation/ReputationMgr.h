@@ -116,7 +116,7 @@ public:                                                 // modifiers
     }
     bool ModifyReputation(FactionEntry const* factionEntry, float standing, bool noSpillOver = false, Optional<ReputationRank> repMaxCap = {})
     {
-        return SetReputation(factionEntry, standing, true, noSpillOver, repMaxCap);
+        return SetReputation(factionEntry, standing*5, true, noSpillOver, repMaxCap);
     }
 
     void SetVisible(FactionTemplateEntry const* factionTemplateEntry);
