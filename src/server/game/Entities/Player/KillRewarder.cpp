@@ -113,7 +113,7 @@ void KillRewarder::_InitGroupData()
                 }
         // 2.6. _isFullXP - flag identifying that for all group members victim is not gray,
         //      so 100% XP will be rewarded (50% otherwise).
-        _isFullXP = true; //Force full XP, we don't really want to punish people for getting dungeon runs from a higher level character.
+        _isFullXP = true;
     }
     else
         _count = 1;
@@ -209,7 +209,7 @@ void KillRewarder::_RewardPlayer(Player* player, bool isDungeon)
     // Give reputation and kill credit only in PvE.
     if (!_isPvP || _isBattleGround)
     {
-        float xpRate = 1.0f; // Force normal xpRate regardless of group size or _aliveSumLevel -- this means we'll always get full XP regardless of group size or member level. 
+        float xpRate = _group ? 0.66f : 1.0f; // 65% kill XP if in group of any size, 100 % kill XP if solo
         sScriptMgr->OnRewardKillRewarder(player, this, isDungeon, xpRate);                                              // Personal rate is 100%.
 
         if (_xp)
