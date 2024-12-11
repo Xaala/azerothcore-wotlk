@@ -2897,7 +2897,7 @@ Map::EnterState InstanceMap::CannotEnter(Player* player, bool loginCheck)
         return Map::CannotEnter(player, loginCheck);
 
     // cannot enter if the instance is full (player cap), GMs don't count
-    uint32 maxPlayers = GetMaxPlayers();
+    uint32 maxPlayers = 39; // Override of the lookup, we don't want to enforce a max group size so we allow 40 players into any instance. 
     if (GetPlayersCountExceptGMs() >= (loginCheck ? maxPlayers + 1 : maxPlayers))
     {
         LOG_DEBUG("maps", "MAP: Instance '{}' of map '{}' cannot have more than '{}' players. Player '{}' rejected", GetInstanceId(), GetMapName(), maxPlayers, player->GetName());
