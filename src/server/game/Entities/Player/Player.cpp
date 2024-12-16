@@ -4484,9 +4484,9 @@ void Player::ResurrectPlayer(float restore_percent, bool applySickness)
         SetDynamicFlag(UNIT_DYNFLAG_REFER_A_FRIEND);
 
     setDeathState(DeathState::Alive);
-    LOG_INFO("Player is alive, setting movement speed to 1.0f.");
+    LOG_INFO("misc", "Player is alive, setting movement speed to 1.0f.");
     SetSpeed(MOVE_RUN, 1.0f);
-    LOG_INFO("Player is alive, movement speed set to 1.0f.");
+    LOG_INFO("misc", "Player is alive, movement speed set to 1.0f.");
     SetMovement(MOVE_LAND_WALK);
     SetMovement(MOVE_UNROOT);
     SetWaterWalking(false);
@@ -4923,9 +4923,9 @@ void Player::RepopAtGraveyard()
         return;
 
     if (!IsAlive()) {
-        LOG_INFO("Player is ghost, setting movement speed to 3.0f.");
+        LOG_INFO("misc", "Player is ghost, setting movement speed to 3.0f.");
         SetSpeed(MOVE_RUN, 3.0f);
-        LOG_INFO("Player is ghost, movement speed is set.");
+        LOG_INFO("misc", "Player is ghost, movement speed is set.");
     }
 
     // Such zones are considered unreachable as a ghost and the player must be automatically revived
