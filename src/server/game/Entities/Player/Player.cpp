@@ -4484,6 +4484,7 @@ void Player::ResurrectPlayer(float restore_percent, bool applySickness)
         SetDynamicFlag(UNIT_DYNFLAG_REFER_A_FRIEND);
 
     setDeathState(DeathState::Alive);
+    SetSpeed(MOVE_RUN, 1.0f);
     SetMovement(MOVE_LAND_WALK);
     SetMovement(MOVE_UNROOT);
     SetWaterWalking(false);
@@ -4918,6 +4919,8 @@ void Player::RepopAtGraveyard()
 
     if (!sScriptMgr->CanRepopAtGraveyard(this))
         return;
+
+    SetSpeed(MOVE_RUN, 3.0f);
 
     // Such zones are considered unreachable as a ghost and the player must be automatically revived
     // Xinef: Get Transport Check is not needed
