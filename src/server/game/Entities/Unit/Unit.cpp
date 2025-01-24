@@ -17804,6 +17804,11 @@ void Unit::Kill(Unit* killer, Unit* victim, bool durabilityLoss, WeaponAttackTyp
                 data2 << uint8(0); // unk1
                 data2 << uint8(0); // no group looter
                 player->SendMessageToSet(&data2, true);
+
+                if (creature->IsPvP()) {
+                    LOG_INFO("entities.unit", "Rewarding {} {} honor for killing pvp flagged NPC.", player->GetPlayerName(), creature->GetLevel()/2);
+                    player->ModifyHonorPoints(creature->GetLevel()/2);
+                }
             }
         }
 
