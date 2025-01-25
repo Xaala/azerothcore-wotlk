@@ -17791,6 +17791,18 @@ void Unit::Kill(Unit* killer, Unit* victim, bool durabilityLoss, WeaponAttackTyp
                         creature->SetLootRecipient(looter);   // update creature loot recipient to the allowed looter.
                     }
                 }
+
+                if (creature->IsPvP()) {
+                    // Should reward all players in the group with honor
+                    for (GroupReference* itr = _group->GetFirstMember(); itr != nullptr; itr = itr->next())
+                    {
+                        if (Player* member = itr->GetSource())
+                        {
+                            LOG_INFO("entities.unit", "GROUP: Rewarding {} {} honor for killing pvp flagged NPC.", member->GetPlayerName(), creature->GetLevel()/2);
+                            member->ModifyHonorPoints(creature->GetLevel()/2);
+                        }
+                    }
+                }
             }
         }
         else
@@ -17806,7 +17818,7 @@ void Unit::Kill(Unit* killer, Unit* victim, bool durabilityLoss, WeaponAttackTyp
                 player->SendMessageToSet(&data2, true);
 
                 if (creature->IsPvP()) {
-                    LOG_INFO("entities.unit", "Rewarding {} {} honor for killing pvp flagged NPC.", player->GetPlayerName(), creature->GetLevel()/2);
+                    LOG_INFO("entities.unit", "No Group: Rewarding {} {} honor for killing pvp flagged NPC.", player->GetPlayerName(), creature->GetLevel()/2);
                     player->ModifyHonorPoints(creature->GetLevel()/2);
                 }
             }
