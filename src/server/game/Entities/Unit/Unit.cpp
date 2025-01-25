@@ -17794,7 +17794,7 @@ void Unit::Kill(Unit* killer, Unit* victim, bool durabilityLoss, WeaponAttackTyp
 
                 if (creature->IsPvP()) {
                     // Should reward all players in the group with honor
-                    for (GroupReference* itr = _group->GetFirstMember(); itr != nullptr; itr = itr->next())
+                    for (GroupReference* itr = group->GetFirstMember(); itr != nullptr; itr = itr->next())
                     {
                         if (Player* member = itr->GetSource())
                         {
